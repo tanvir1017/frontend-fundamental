@@ -7974,10 +7974,10 @@ function requireClient () {
 var clientExports = requireClient();
 var ReactDOM = /*@__PURE__*/getDefaultExportFromCjs(clientExports);
 
-//import { Bundler } from "./app";
-
-const HelloWorld = () => {
-  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "This is also hello world"));
+const App = () => {
+  return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("h1", null, "Hello, World!"));
 };
+
+console.log(document.getElementById("root"));
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(/*#__PURE__*/React.createElement(HelloWorld, null));
+root.render(/*#__PURE__*/React.createElement(App, null));

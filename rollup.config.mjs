@@ -4,7 +4,7 @@ import nodeResolve from "@rollup/plugin-node-resolve";
 import replace from "@rollup/plugin-replace";
 
 export default {
-  input: "src/main.js",
+  input: "src/index.js",
   output: {
     file: "public/bundle.js",
     format: "esm",
