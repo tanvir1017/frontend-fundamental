@@ -1,39 +1,63 @@
-import { useReducer } from "react";
+import React, { useReducer } from "react";
 
-const initialState = {
-  count: 0,
+type TAction = {
+  type: "addName" | "addEmail";
+  payload: string;
 };
 
-const reducer = (initialState, action) => {
-  switch (action.type) {
-    case "increment":
-      return { count: initialState.count + 1 };
-    case "decrement":
-      return { count: initialState.count - 1 };
+const initialState = {
+  name: "",
+  email: "",
+};
 
+const reducer = (currState: typeof initialState, action: TAction) => {
+  switch (action.type) {
+    case "addName":
+      return {
+        ...currState,
+        name: action.payload,
+      };
+    case "addEmail":
+      return {
+        ...currState,
+        email: action.payload,
+      };
     default:
-      return initialState;
+      return currState;
   }
 };
 
 const UseReducerExample = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  const handleOnsubmitForm = (e: React.ChangeEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(state);
+  };
   return (
-    <div className="space-x-2">
-      <h2>{state.count}</h2>
-      <button
-        onClick={() => dispatch({ type: "increment" })}
-        className="bg-purple-400 text-black"
-      >
-        Increment
-      </button>
-      <button
-        onClick={() => dispatch({ type: "decrement" })}
-        className="bg-purple-800"
-      >
-        Decrement
-      </button>
+    <div className="">
+      <form onSubmit={handleOnsubmitForm} className="space-x-2">
+        <input
+          className="border py-2 border-white"
+          type="text"
+          name="name"
+          id=""
+          onChange={(e) =>
+            dispatch({ type: "addName", payload: e.target.value })
+          }
+        />
+        <input
+          className="border py-2 border-white"
+          type="text"
+          name="email"
+          id=""
+          onChange={(e) =>
+            dispatch({ type: "addEmail", payload: e.target.value })
+          }
+        />
+
+        <button type="submit">Anmeldung</button>
+      </form>
     </div>
   );
 };

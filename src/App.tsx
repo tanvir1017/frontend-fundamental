@@ -1,10 +1,10 @@
 import "./App.css";
-import UseReducerExample from "./pages/useReducer";
+import UseEffectExample from "./pages/useEffectExample";
 
 function App() {
   return (
     <div>
-      <UseReducerExample />
+      <UseEffectExample />
     </div>
   );
 }
