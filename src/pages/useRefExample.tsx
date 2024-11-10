@@ -4,6 +4,7 @@ import Input from "../components/input";
 const UseRefExample = () => {
   const myRef = React.useRef<HTMLInputElement | null>(null);
 
+  console.log("hello");
   const handleKeyPress = () => {
     myRef.current?.focus();
   };

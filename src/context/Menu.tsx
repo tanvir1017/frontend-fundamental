@@ -24,6 +24,6 @@ export const MenuList = ({ children }: TMenuListProps) => {
 
 export const Menuitem = ({ children }: { children: React.ReactNode }) => {
   const { theme } = React.useContext(MenuContext) as TMenuContext;
-  console.log();
+  console.log(theme);
   return <div>{children}</div>;
 };
