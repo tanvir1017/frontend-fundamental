@@ -10,11 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "clsx": "^2.1.1",
+    "cn-utility": "^1.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.28.0",
-    "tailwind-merge": "^2.5.4"
+    "react-router-dom": "^6.28.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",

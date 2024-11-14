@@ -1,8 +1,15 @@
-import { Link } from "react-router-dom";
+import { cn } from "cn-utility";
+import { Link, useMatch } from "react-router-dom";
 
 const AdminLayout = () => {
+  const route = useMatch("/admin/add-admin");
   return (
-    <header className="bg-purple-300 py-2 px-10 h-screen ">
+    <header
+      className={cn("py-2 px-10 h-screen", {
+        "bg-red-500": route?.pathname === "/admin/add-admin",
+        "bg-blue-500": route?.pathname !== "/admin/add-admin",
+      })}
+    >
       <nav>
         <ul className="flex items-center gap-6">
           <Link to={"/"} className="underline">
