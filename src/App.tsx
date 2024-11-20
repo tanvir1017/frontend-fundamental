@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { useState } from "react";
 import "./App.css";
 
 const parent = {
@@ -33,6 +34,7 @@ const parent = {
 };
 
 function App() {
+  const [coutner, setCounter] = useState(true);
   return (
     <div className="grid grid-flow-col place-items-center h-screen">
       <motion.div
@@ -42,7 +44,13 @@ function App() {
         animate="visible"
         whileHover="hover"
         whileTap="tap"
-      ></motion.div>
+        onHoverStart={() => setCounter(true)}
+        onHoverEnd={() => setCounter((prev) => !prev)}
+      >
+        <motion.div className="size-20  bg-red-200 text-red-800 grid place-items-center">
+          {coutner ? "Hoverd" : "UnHovered"}
+        </motion.div>
+      </motion.div>
     </div>
   );
 }
