@@ -1,13 +1,17 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { tasksApi } from "../API/api";
 import counterReducer from "../features/counter-slice";
 import todoReducer from "../features/todo/todo-slice";
-import { Logger } from "../middleware/logger";
 export const store = configureStore({
   reducer: {
+    // TODO: Add the generated reducer as a specific top-level slice
+    [tasksApi.reducerPath]: tasksApi.reducer,
     counter: counterReducer,
-    todo: todoReducer,
+    todos: todoReducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(Logger),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(tasksApi.middleware),
+  // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(Logger),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

@@ -1,5 +1,7 @@
+import { addTodo } from "@/app/redux/features/todo/todo-slice";
 import { Pencil } from "lucide-react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Button } from "../shadcn/button";
 import {
   Dialog,
@@ -12,12 +14,22 @@ import {
 import { Input } from "../shadcn/input";
 import { Label } from "../shadcn/label";
 
+export function randomStringGenerator() {
+  return Math.random().toString(36).substring(2, 7);
+}
 export default function AddToDo() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const dispatch = useDispatch();
+
   const handleOnSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ name, description });
+    const taskDetails = {
+      id: randomStringGenerator(),
+      title: name,
+      description,
+    };
+    dispatch(addTodo(taskDetails));
   };
   return (
     <Dialog>
@@ -51,7 +63,7 @@ export default function AddToDo() {
                 Description
               </Label>
               <Input
-                onBlur={(e) => setName(e.target.value)}
+                onBlur={(e) => setDescription(e.target.value)}
                 id="description"
                 placeholder="description"
                 className="col-span-3"
