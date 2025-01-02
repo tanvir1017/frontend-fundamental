@@ -14,7 +14,16 @@ export const tasksApi = createApi({
         method: "GET",
       }),
     }),
+
+    // TODO: Todo Mutation endpoints
+    addTodo: builder.mutation({
+      query: (data) => ({
+        url: "/todos/add",
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
-export const { useGetTodosQuery } = tasksApi;
+export const { useGetTodosQuery, useAddTodoMutation } = tasksApi;

@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { tasksApi } from "../API/api";
-import counterReducer from "../features/counter-slice";
+import counterReducer from "../features/counter/counter-slice";
 import todoReducer from "../features/todo/todo-slice";
 export const store = configureStore({
   reducer: {
-    // TODO: Add the generated reducer as a specific top-level slice
+    // TODO: Add the generated reducer at top-level of slice
     [tasksApi.reducerPath]: tasksApi.reducer,
     counter: counterReducer,
     todos: todoReducer,

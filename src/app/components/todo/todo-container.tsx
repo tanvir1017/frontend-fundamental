@@ -2,7 +2,7 @@ import { useGetTodosQuery } from "@/app/redux/API/api";
 import { Button } from "../shadcn/button";
 import Container from "../ui/container";
 import AddToDo from "./add-todo-modal";
-import FilterDropDown from "./todo-filter";
+import TodoCard from "./todo-card";
 
 const TodoContainer = () => {
   // TODO: From local state
@@ -13,12 +13,12 @@ const TodoContainer = () => {
   if (isLoading) {
     return <p>loading...</p>;
   }
-  console.log("🚀 ~ TodoContainer ~ todos:", todos);
+
   return (
     <div>
       <div className="flex justify-between mb-2">
         <AddToDo />
-        <FilterDropDown />
+        {/* <FilterDropDown /> */}
       </div>
       <div className="bg-primary-gradient w-full h-full rounded-xl p-1">
         <div className="bg-white w-full h-full p-5 rounded-lg space-y-2">
@@ -44,9 +44,12 @@ const TodoContainer = () => {
             </div>
           ))}
         </div>
-        {/* <div className="bg-white w-full h-full p-5 rounded-lg space-y-2">
+        <div className="bg-white w-full h-full p-5 rounded-lg space-y-2">
           {todos.length > 0 ? (
-            todos.map((todo) => <TodoCard key={todo.id} todo={todo} />)
+            // showing first 10 todos
+            todos
+              .slice(0, 10)
+              .map((todo) => <TodoCard key={todo.id} todo={todo} />)
           ) : (
             <div className="bg-white w-full h-full rounded-lg">
               <div className="bg-white rounded-lg p-3 flex items-center justify-between shadow-sm drop-shadow-sm border border-slate-200">
@@ -54,9 +57,10 @@ const TodoContainer = () => {
               </div>
             </div>
           )}
-        </div> */}
+        </div>
+
+        <Container></Container>
       </div>
-      <Container></Container>
     </div>
   );
 };

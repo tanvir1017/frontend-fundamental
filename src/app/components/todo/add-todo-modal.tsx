@@ -1,4 +1,4 @@
-import { addTodo } from "@/app/redux/features/todo/todo-slice";
+import { useAddTodoMutation } from "@/app/redux/API/api";
 import { Pencil } from "lucide-react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
@@ -20,16 +20,23 @@ export function randomStringGenerator() {
 export default function AddToDo() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+
+  //! For handling local state
   const dispatch = useDispatch();
+
+  const [addTodo, { isLoading, isError, isSuccess, data }] =
+    useAddTodoMutation();
 
   const handleOnSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const taskDetails = {
-      id: randomStringGenerator(),
+      // id: randomStringGenerator(),
       title: name,
       description,
     };
-    dispatch(addTodo(taskDetails));
+    addTodo(taskDetails);
+
+    console.log({ isLoading, isError, isSuccess, data });
   };
   return (
     <Dialog>
